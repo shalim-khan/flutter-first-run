@@ -6,8 +6,8 @@ var displayText = "";
 
 void main() async {
   await Hive.initFlutter();
-  await Hive.openBox('flutter-first-run-two'); // increment this to reset first run status for testing
-  var box = Hive.box('flutter-first-run-two');
+  await Hive.openBox('flutter-first-run-three'); // increment this to reset first run status for testing
+  var box = Hive.box('flutter-first-run-three');
 
   var hasBeenRunBefore = box.get('hasBeenRunBefore');
   if (hasBeenRunBefore == null) {
