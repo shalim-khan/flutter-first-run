@@ -3,13 +3,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 var displayText = "";
-var subText = "";
-var subtextSuffix = "s";
+var subText = "This app has been run ";
+var subTextEnding = "";
 
 void main() async {
   await Hive.initFlutter();
-  await Hive.openBox('flutter-first-run-four'); // increment this to reset first run status for testing
-  var box = Hive.box('flutter-first-run-four');
+  await Hive.openBox('flutter-first-run-six'); // increment this to reset first run status for testing
+  var box = Hive.box('flutter-first-run-six');
 
   var runCount = box.get('runCount', defaultValue: 0);
   runCount++;
@@ -17,12 +17,14 @@ void main() async {
 
   if (runCount == 1) {
     displayText = "This is the first run";
-    subtextSuffix = "";
+    subTextEnding = "once";
+  } else if (runCount == 2) {
+    displayText = "This is NOT the first run";
+    subTextEnding = "twice";
   } else {
     displayText = "This is NOT the first run";
+    subTextEnding = "$runCount times";
   }
-
-  subText = "This app has been run $runCount time$subtextSuffix";
 
   runApp(CleanApp(home: HomePage()));
 }
@@ -46,7 +48,7 @@ class HomePage extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Text(
-              subText,
+              subText + subTextEnding,
               textAlign: TextAlign.center,
               style: GoogleFonts.lato(
                 fontSize: 15,
