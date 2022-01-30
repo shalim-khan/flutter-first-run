@@ -8,7 +8,8 @@ var subTextEnding = "";
 
 void main() async {
   await Hive.initFlutter();
-  await Hive.openBox('flutter-first-run-six'); // increment this to reset first run status for testing
+  await Hive.openBox(
+      'flutter-first-run-six'); // increment this to reset first run status for testing
   var box = Hive.box('flutter-first-run-six');
 
   var runCount = box.get('runCount', defaultValue: 0);
@@ -37,8 +38,6 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // AnimatedRocketShip(),
-            // SizedBox(height: 20),
             Text(
               displayText,
               textAlign: TextAlign.center,
@@ -94,7 +93,8 @@ class CleanApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.light,
-        primaryColor: Colors.cyan, // iOS PWA status bar background color for light AND dark modes
+        primaryColor: Colors
+            .cyan, // iOS PWA status bar background color for light AND dark modes
         scaffoldBackgroundColor: Colors.white,
       ),
       darkTheme: ThemeData(
