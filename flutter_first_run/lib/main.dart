@@ -3,21 +3,27 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 var displayText = "";
+var subText = "";
+var subtextSuffix = "s";
 
 void main() async {
   await Hive.initFlutter();
-  await Hive.openBox('flutter-first-run-three'); // increment this to reset first run status for testing
-  var box = Hive.box('flutter-first-run-three');
+  await Hive.openBox('flutter-first-run-four'); // increment this to reset first run status for testing
+  var box = Hive.box('flutter-first-run-four');
 
-  var hasBeenRunBefore = box.get('hasBeenRunBefore');
-  if (hasBeenRunBefore == null) {
-    // FIRST RUN
-    box.put('hasBeenRunBefore', 'yes');
+  var runCount = box.get('runCount', defaultValue: 0);
+  runCount++;
+  box.put('runCount', runCount);
+
+  if (runCount == 1) {
     displayText = "This is the first run";
+    subtextSuffix = "";
   } else {
-    // NOT FIRST RUN
     displayText = "This is NOT the first run";
   }
+
+  subText = "This app has been run $runCount time$subtextSuffix";
+
   runApp(CleanApp(home: HomePage()));
 }
 
@@ -30,12 +36,20 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // AnimatedRocketShip(),
-            SizedBox(height: 20),
+            // SizedBox(height: 20),
             Text(
               displayText,
               textAlign: TextAlign.center,
               style: GoogleFonts.lato(
                 fontSize: 25,
+              ),
+            ),
+            SizedBox(height: 10),
+            Text(
+              subText,
+              textAlign: TextAlign.center,
+              style: GoogleFonts.lato(
+                fontSize: 15,
               ),
             ),
           ],
