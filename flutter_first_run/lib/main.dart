@@ -9,16 +9,33 @@ var subTextEnding = ""; // For example, "... 7 times"
 
 void main() async {
   // Initialise local storage
+  Box<dynamic> box = await initialiseLocalStorage();
+
+  // Check how many times this app has been run, and increment by one
+  var runCount = updateRunCount(box);
+
+  // Set behaviour according to how many times the app has been run
+  setDesiredBehaviour(runCount);
+
+  // Run the app itself
+  runApp(CleanApp(home: HomePage()));
+}
+
+Future<Box<dynamic>> initialiseLocalStorage() async {
   await Hive.initFlutter();
   await Hive.openBox('flutter-first-run-six'); // increment this to reset first run status for testing
   var box = Hive.box('flutter-first-run-six');
+  return box;
+}
 
-  // Check how many times this app has been run, and increment by one
+updateRunCount(Box<dynamic> box) {
   var runCount = box.get('runCount', defaultValue: 0);
   runCount++;
   box.put('runCount', runCount);
+  return runCount;
+}
 
-  // Set behaviour according to how many times the app has been run
+void setDesiredBehaviour(runCount) {
   if (runCount == 1) {
     mainText = "This is the first run";
     subTextEnding = "once";
@@ -29,9 +46,6 @@ void main() async {
     mainText = "This is NOT the first run";
     subTextEnding = "$runCount times";
   }
-
-  // Run the app itself
-  runApp(CleanApp(home: HomePage()));
 }
 
 class HomePage extends StatelessWidget {
