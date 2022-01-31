@@ -23,8 +23,8 @@ void main() async {
 
 Future<Box<dynamic>> initialiseLocalStorage() async {
   await Hive.initFlutter();
-  await Hive.openBox('flutter-first-run-six'); // increment this to reset first run status for testing
-  var box = Hive.box('flutter-first-run-six');
+  await Hive.openBox('flutter-first-run-seven'); // increment this to reset first run status for testing
+  var box = Hive.box('flutter-first-run-seven');
   return box;
 }
 
