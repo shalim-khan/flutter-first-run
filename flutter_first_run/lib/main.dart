@@ -59,9 +59,7 @@ class HomePage extends StatelessWidget {
     return Text(
       mainText,
       textAlign: TextAlign.center,
-      style: GoogleFonts.lato(
-        fontSize: 25,
-      ),
+      style: GoogleFonts.lato(fontSize: 25),
     );
   }
 
@@ -69,9 +67,7 @@ class HomePage extends StatelessWidget {
     return Text(
       subText + subTextEnding,
       textAlign: TextAlign.center,
-      style: GoogleFonts.lato(
-        fontSize: 15,
-      ),
+      style: GoogleFonts.lato(fontSize: 15),
     );
   }
 }
