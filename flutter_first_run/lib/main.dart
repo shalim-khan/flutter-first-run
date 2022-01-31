@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'animated_calendar.dart';
 import 'utils.dart';
 
 var mainText = ""; // For example, "This is NOT the first run"
@@ -56,6 +57,8 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            AnimatedCalendar(),
+            SizedBox(height: 30),
             buildMainText(),
             SizedBox(height: 10),
             buildSubText(),
