@@ -58,10 +58,11 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             AnimatedCalendar(),
-            SizedBox(height: 30),
+            SizedBox(height: 50),
             buildMainText(),
             SizedBox(height: 10),
             buildSubText(),
+            SizedBox(height: 70),
           ],
         ),
       ),
