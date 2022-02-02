@@ -11,8 +11,8 @@ var subTextEnding = ""; // For example, "... 7 times"
 void main() async {
   // Initialise local storage
   await Hive.initFlutter();
-  await Hive.openBox('flutter-first-run-seven'); // increment this to reset first run status for testing
-  var box = Hive.box('flutter-first-run-seven');
+  await Hive.openBox('flutter-first-run-eight'); // increment this to reset first run status for testing
+  var box = Hive.box('flutter-first-run-eight');
 
   // Check how many times this app has been run, and increment by one
   var runCount = box.get('runCount', defaultValue: 0);
