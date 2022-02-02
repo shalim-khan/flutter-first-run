@@ -13,7 +13,7 @@ class AnimatedCalendar extends StatelessWidget {
       padding: EdgeInsets.fromLTRB(15, 15, 15, 15),
       child: Image.asset(
         "images/calendar.gif",
-        height: 200,
+        height: 140,
       ),
     );
   }

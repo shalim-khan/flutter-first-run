@@ -10,33 +10,16 @@ var subTextEnding = ""; // For example, "... 7 times"
 
 void main() async {
   // Initialise local storage
-  Box<dynamic> box = await initialiseLocalStorage();
-
-  // Check how many times this app has been run, and increment by one
-  var runCount = updateRunCount(box);
-
-  // Set behaviour according to how many times the app has been run
-  setDesiredBehaviour(runCount);
-
-  // Run the app itself
-  runApp(CleanApp(home: HomePage()));
-}
-
-Future<Box<dynamic>> initialiseLocalStorage() async {
   await Hive.initFlutter();
   await Hive.openBox('flutter-first-run-seven'); // increment this to reset first run status for testing
   var box = Hive.box('flutter-first-run-seven');
-  return box;
-}
 
-updateRunCount(Box<dynamic> box) {
+  // Check how many times this app has been run, and increment by one
   var runCount = box.get('runCount', defaultValue: 0);
   runCount++;
   box.put('runCount', runCount);
-  return runCount;
-}
 
-void setDesiredBehaviour(runCount) {
+  // Set behaviour according to how many times the app has been run
   if (runCount == 1) {
     mainText = "This is the first run";
     subTextEnding = "once";
@@ -47,6 +30,9 @@ void setDesiredBehaviour(runCount) {
     mainText = "This is NOT the first run";
     subTextEnding = "$runCount times";
   }
+
+  // Run the app itself
+  runApp(CleanApp(home: HomePage()));
 }
 
 class HomePage extends StatelessWidget {
@@ -58,11 +44,11 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             AnimatedCalendar(),
-            SizedBox(height: 50),
+            SizedBox(height: 30),
             buildMainText(),
             SizedBox(height: 10),
             buildSubText(),
-            SizedBox(height: 70),
+            SizedBox(height: 30),
           ],
         ),
       ),
