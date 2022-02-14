@@ -8,7 +8,7 @@ var mainText = "";
 
 void main() async {
   await Hive.initFlutter();
-  var box = await Hive.openBox('flutter-first-run-ten');
+  var box = await Hive.openBox('flutter-first-run-eleven');
 
   var runCount = box.get('runCount', defaultValue: 0);
   runCount++;
