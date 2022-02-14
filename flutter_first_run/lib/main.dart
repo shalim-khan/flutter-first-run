@@ -8,7 +8,7 @@ var mainText = "";
 
 void main() async {
   await Hive.initFlutter();
-  var box = await Hive.openBox('flutter-first-run-nine');
+  var box = await Hive.openBox('flutter-first-run-ten');
 
   var runCount = box.get('runCount', defaultValue: 0);
   runCount++;
@@ -16,8 +16,6 @@ void main() async {
 
   if (runCount == 1) {
     mainText = "This is the first run";
-  } else if (runCount == 2) {
-    mainText = "This is NOT the first run";
   } else {
     mainText = "This is NOT the first run";
   }
